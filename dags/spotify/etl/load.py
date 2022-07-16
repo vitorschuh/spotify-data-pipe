@@ -15,7 +15,7 @@ def load(
         filepath_or_buffer=join(path, templates.generate(processed=True)),
         sep=";",
     )
-    url = f"postgresql+psycopg2://{user}:{password}@db:5432/{db}"
+    url = f"postgresql+psycopg2://{user}:{password}@{uri}/{db}"
     engine = create_engine(url=url)
     with engine.connect() as conn:
         data.to_sql(name="spotify-tracks", con=conn, if_exists="replace", index=False)
